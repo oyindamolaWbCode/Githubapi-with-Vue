@@ -3,7 +3,7 @@ export  default{
   name: "app",
   data(){
     return{
-    profile: [],
+    profile: null
     }
   },
   methods:{
@@ -11,8 +11,8 @@ export  default{
       fetch("https://api.github.com/users/oyindamolaWbCode")
       .then((response) => response.json())
       .then((data) => {
-        this.profile = data
-        console.log(data)
+        this.profile = data;
+         console.log(data)
       })
     }
   },
@@ -31,15 +31,27 @@ export  default{
   <li>Projects</li>
 </ul>
   </header>
-  <div id="nav">
-    <router-link to="/">Home</router-link>
-    <router-link to="/Repositories">Repositories</router-link>
-  </div>
-  <router-view />
   <main>
-   <!-- <div class="repos">
-    <div v-for="(repo, i) in repos" :key="i">{{repo.name}}</div>
-   </div> -->
+   <div class="profileData">
+      <!-- <div v-for="profile in profiles" v-bind:key="profile.id">
+        <h6>{{profile.name}}</h6>
+        <p>{{profile.login}}</p>
+        <router-link>{{profile.html_url}}</router-link>
+        <h6>{{profile.public_repos}}</h6>
+        </div> -->
+        <div v-if="profile">
+        <p>Github_Name: {{profile.name}}</p>
+        <p>Github_username: {{profile.login}}</p>
+        <router-link to ="/https://github.com/oyindamolaWbCode">{{profile.html_url}}</router-link>
+        <p></p>
+        <p>Numbers_of_repos: {{profile.public_repos}}</p>
+        </div>
+        <div v-else>
+          Loading...
+        </div>
+      <!-- <div v-for="(profile, i) in profiles" :key="i"> -->
+    <!-- </div> -->
+</div>
   </main>
 </template>
 

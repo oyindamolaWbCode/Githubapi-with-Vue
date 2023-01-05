@@ -1,35 +1,42 @@
 <script>
-export  default{
+export default {
   name: "app",
-  data(){
-    return{
+  data() {
+    return {
       repos: [],
     }
   },
-  methods:{
-    fetchRepos(){
+  methods: {
+    fetchRepos() {
       fetch("https://api.github.com/users/oyindamolaWbCode/repos")
-      .then((response) => response.json())
-      .then((data) => {
-        this.repos = data
-        console.log(data)
-      })
+        .then((response) => response.json())
+        .then((data) => {
+          this.repos = data
+          console.log(data)
+        })
     }
   },
-  mounted(){
+  mounted() {
     this.fetchRepos();
   }
 };
 </script>
 
 <template>
- 
+
   <header>
+    <div id="nav">
+      <router-link to="/">Home</router-link>
+      <router-link to="/Repositories">Repositories</router-link>
+    </div>
+    <router-view />
   </header>
-  <router-view />
   <main>
-   <!-- <div class="repos">
-    <div v-for="(repo, i) in repos" :key="i">{{repo.name}}</div>
+    <!-- <div class="repos">
+    <div v-for="(repo, i) in repos" :key="i">
+      {{repo.name}}
+      {{ repo.id }}
+    </div>
    </div> -->
   </main>
 </template>
