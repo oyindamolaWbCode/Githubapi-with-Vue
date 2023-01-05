@@ -3,29 +3,38 @@ export  default{
   name: "app",
   data(){
     return{
-      repos: [],
+    profile: [],
     }
   },
   methods:{
-    fetchRepos(){
-      fetch("https://api.github.com/users/oyindamolaWbCode/repos")
+    fetchProfileData(){
+      fetch("https://api.github.com/users/oyindamolaWbCode")
       .then((response) => response.json())
       .then((data) => {
-        this.repos = data
+        this.profile = data
         console.log(data)
       })
     }
   },
   mounted(){
-    this.fetchRepos();
+    this.fetchProfileData();
   }
 };
 </script>
 
 <template>
- 
   <header>
+<ul>
+  <li>Projects</li>
+  <li>Github Link</li>
+  <li>Doumentation</li>
+  <li>Projects</li>
+</ul>
   </header>
+  <div id="nav">
+    <router-link to="/">Home</router-link>
+    <router-link to="/Repositories">Repositories</router-link>
+  </div>
   <router-view />
   <main>
    <!-- <div class="repos">
