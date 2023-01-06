@@ -8,6 +8,7 @@ export default {
     return {
       profile: null,
       Image: Image,
+      repos: [],
     }
   },
   methods: {
@@ -18,10 +19,19 @@ export default {
           this.profile = data;
           console.log(data)
         })
+    },
+    fetchRepos() {
+      fetch("https://api.github.com/users/oyindamolaWbCode/repos")
+        .then((response) => response.json())
+        .then((data) => {
+          this.repos = data
+          console.log(data)
+        })
     }
   },
   mounted() {
     this.fetchProfileData();
+    this.fetchRepos();
   }
 };
 </script>
@@ -37,17 +47,33 @@ export default {
             <img :src="Image" class="repo-profile"/>
           </div>
           <p>Github_Name: {{ profile.name }}</p>
-          <p>Github_username: {{ profile.login }}</p>
+          <p>Github_Username: {{ profile.login }}</p>
           <router-link to="/https://github.com/oyindamolaWbCode">Profile Link</router-link>
           <p>Numbers_of_repos: {{ profile.public_repos }}</p>
           <p>Site_Admin: {{ profile.site_admin }}</p>
+          <p>Profile_Type: {{ profile.type }}</p>
         </div>
         <div v-else>
           Loading...
         </div>
       </div>
       <div class="reposList">
-
+        <div class="repos">
+          <table class="repo-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(repo, i) in repos" :key="i">
+       <td>{{ repo.id }}</td>
+       <td>{{repo.name}}</td>
+              </tr>
+            </tbody>
+      </table>
+   </div>
       </div>
     </div>
   </div>
@@ -79,7 +105,21 @@ export default {
   width:30%;
  }
 
+ .reposList{
+  width:60%;
+ }
+
  p{
   font-family: 'Montserrat', sans-serif;
  }
+
+.repo-table{
+  margin-top: 50px;
+}
+
+.repo-table td,
+.repo-table th {
+  padding: 20px !important;
+  font-family: 'Montserrat', sans-serif;
+}
 </style>
