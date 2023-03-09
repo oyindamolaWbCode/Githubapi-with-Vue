@@ -1,9 +1,8 @@
 <script>
-import NavbarVue from "./components/Navbar.vue";
+//import NavbarVue from "./components/Navbar.vue";
 import { RouterLink, RouterView } from "vue-router";
 export default {
   name: "app",
-  components: { NavbarVue },
   data() {
     return {
       repos: [],
@@ -29,7 +28,22 @@ export default {
 
   <header>
     <div id="nav">
-     <NavbarVue />
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <router-link class="nav-link active"  to ="/">Home</router-link>
+  </li>
+  <li class="nav-item">
+    <router-link class="nav-link" :to="{name: 'Result'}">Result</router-link>
+  </li>
+  <li class="nav-item">
+    <router-link class="nav-link" :to="{name: 'Repositories'}">Repositories</router-link>
+  </li>
+  <li class="nav-item">
+            <router-link class="nav-link" :to="{name: 'NotFound'}">NotFound</router-link>
+            </li>
+</ul>
+     <!-- 
+     <router-link :to ="{name : 'Result'}">Result</router-link> -->
     </div>
     <router-view />
   </header>

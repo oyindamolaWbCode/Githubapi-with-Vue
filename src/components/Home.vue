@@ -20,6 +20,14 @@ export default {
           console.log(data)
         })
     },
+    // async fetchRepos(){
+    //   this.repos = await fetch(`https://api.github.com/users/oyindamolaWbCode/repos/comments?_page=${this.currentPage}&_limit=${this.perPage}`)
+    //   .then(res =>{ 
+    //     this.totalRepos = parseInt(res.headers.get('x-total-count'), 5)
+    //     return res.json()
+    //   })
+    //   .then(repos => repos)
+    // }
     fetchRepos() {
       fetch("https://api.github.com/users/oyindamolaWbCode/repos")
         .then((response) => response.json())
@@ -29,6 +37,15 @@ export default {
         })
     }
   },
+  // watch:{
+  //   currentPage: {
+  //     handler: function(value){
+  //       this.fetchRepos().catch(error =>{
+  //         console.error(error)
+  //       })
+  //     }
+  //   }
+  // },
   mounted() {
     this.fetchProfileData();
     this.fetchRepos();
@@ -44,7 +61,7 @@ export default {
         </div> -->
         <div v-if="profile">
           <div class="image">
-            <img :src="Image" class="repo-profile"/>
+            <img :src="Image" class="repo-profile" />
           </div>
           <p>Github_Name: {{ profile.name }}</p>
           <p>Github_Username: {{ profile.login }}</p>
@@ -64,16 +81,17 @@ export default {
               <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Click to Repo</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(repo, i) in repos" :key="i">
-       <td>{{ repo.id }}</td>
-       <td>{{repo.name}}</td>
+                <td>{{ repo.id }}</td>
+                <td>{{ repo.name }}</td>
               </tr>
             </tbody>
-      </table>
-   </div>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -82,44 +100,44 @@ export default {
 <style >
 @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@200&family=Josefin+Sans:ital@1&family=Montserrat:wght@100;600&family=Overpass:wght@300&family=Poppins:wght@300&family=Roboto:wght@300&display=swap');
 
- .the-container{
-  padding:20px;
- }
+.the-container {
+  padding: 20px;
+}
 
- .repo-profile{
+.repo-profile {
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 48%;
   margin-bottom: 30px;
   margin-top: 30px;
   width: 250px;
- }
+}
 
- .the-flexy-container{
-  display:flex;
+.the-flexy-container {
+  display: flex;
   justify-content: space-between;
-  width:100%;
- }
+  width: 100%;
+}
 
- .profileData-left{
-  width:30%;
- }
+.profileData-left {
+  width: 30%;
+}
 
- .reposList{
-  width:60%;
- }
+.reposList {
+  width: 60%;
+}
 
- p{
+p {
   font-family: 'Montserrat', sans-serif;
- }
+}
 
-.repo-table{
+.repo-table {
   margin-top: 50px;
 }
 
 .repo-table td,
 .repo-table th {
-  padding: 20px !important;
+  padding: 10px !important;
   font-family: 'Montserrat', sans-serif;
 }
 </style>
