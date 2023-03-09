@@ -1,5 +1,4 @@
 <script>
-//import NavbarVue from "./components/Navbar.vue";
 import { RouterLink, RouterView } from "vue-router";
 export default {
   name: "app",

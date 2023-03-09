@@ -1,9 +1,7 @@
 <script>
-import NavbarVue from "../components/Navbar.vue";
 import Image from "../assets/me.jpg";
 export default {
   name: "app",
-  components: { NavbarVue },
   data() {
     return {
       profile: null,
@@ -86,6 +84,7 @@ export default {
             </thead>
             <tbody>
               <tr v-for="(repo, i) in repos" :key="i">
+                <!-- <tr v-for="repo in paginatedRepos" :key="repo.id"> -->
                 <td>{{ repo.id }}</td>
                 <td>{{ repo.name }}</td>
               </tr>
