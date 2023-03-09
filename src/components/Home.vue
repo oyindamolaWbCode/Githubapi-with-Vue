@@ -1,54 +1,48 @@
 <script>
 import Image from "../assets/me.jpg";
+import Repositories from "./Repositories.vue";
+
 export default {
-  name: "app",
-  data() {
-    return {
-      profile: null,
-      Image: Image,
-      repos: [],
-    }
-  },
-  methods: {
-    fetchProfileData() {
-      fetch("https://api.github.com/users/oyindamolaWbCode")
-        .then((response) => response.json())
-        .then((data) => {
-          this.profile = data;
-          console.log(data)
-        })
+    name: "Home",
+    data() {
+        return {
+            profile: null,
+            Image: Image,
+            //repos: [],
+            // repositories: [],
+            // currentPage: 1,
+            // itemsPerPage: 3,
+            // totalPages: 1,
+        };
     },
-    // async fetchRepos(){
-    //   this.repos = await fetch(`https://api.github.com/users/oyindamolaWbCode/repos/comments?_page=${this.currentPage}&_limit=${this.perPage}`)
-    //   .then(res =>{ 
-    //     this.totalRepos = parseInt(res.headers.get('x-total-count'), 5)
-    //     return res.json()
-    //   })
-    //   .then(repos => repos)
-    // }
-    fetchRepos() {
-      fetch("https://api.github.com/users/oyindamolaWbCode/repos")
-        .then((response) => response.json())
-        .then((data) => {
-          this.repos = data
-          console.log(data)
-        })
-    }
-  },
-  // watch:{
-  //   currentPage: {
-  //     handler: function(value){
-  //       this.fetchRepos().catch(error =>{
-  //         console.error(error)
-  //       })
-  //     }
-  //   }
-  // },
-  mounted() {
-    this.fetchProfileData();
-    this.fetchRepos();
-  }
+    methods: {
+        fetchProfileData() {
+            fetch("https://api.github.com/users/oyindamolaWbCode")
+                .then((response) => response.json())
+                .then((data) => {
+                this.profile = data;
+                console.log(data);
+            });
+        },
+        
+    },
+    // watch:{
+    //   currentPage: {
+    //     handler: function(value){
+    //       this.fetchRepos().catch(error =>{
+    //         console.error(error)
+    //       })
+    //     }
+    //   }
+    // },
+    mounted() {
+        this.fetchProfileData();
+        //this.fetchRepositories();
+        //this.fetchRepos();
+    },
+    components: { Repositories }
 };
+
 </script>
 
 <template>
@@ -74,26 +68,11 @@ export default {
       </div>
       <div class="reposList">
         <div class="repos">
-          <table class="repo-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Click to Repo</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(repo, i) in repos" :key="i">
-                <!-- <tr v-for="repo in paginatedRepos" :key="repo.id"> -->
-                <td>{{ repo.id }}</td>
-                <td>{{ repo.name }}</td>
-              </tr>
-            </tbody>
-          </table>
+          <Repositories />
         </div>
       </div>
     </div>
-  </div>
+  </div> 
 </template>
 
 <style >
