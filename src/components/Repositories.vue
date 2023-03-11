@@ -1,25 +1,25 @@
 <template>
-    <div>
-      <table class="table table-striped">
+    <div class="container">
+      <table class="table">
         <thead>
           <tr>
             <th>Name</th>
-            <th>Description</th>
+            <th>Repo ID</th>
             <th>Language</th>
-            <th>Stars</th>
+            <!-- <th>Stars</th> -->
           </tr>
         </thead>
         <tbody>
           <tr v-for="repo in paginatedRepositories" :key="repo.id">
-            <td><a :href="repo.html_url" target="_blank">{{ repo.name }}</a></td>
-            <td>{{ repo.description }}</td>
-            <td>{{ repo.language }}</td>
-            <td>{{ repo.stargazers_count }}</td>
+            <td class="sizing">{{ repo.name }}</td>
+            <td class="sizing">{{ repo.id}}</td>
+            <td class="sizing">{{ repo.language }}</td>
+            <!-- <td>{{ repo.stargazers_count }}</td> -->
           </tr>
         </tbody>
       </table>
       <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-center p-5">
           <li class="page-item" :class="{ disabled: currentPage === 1 }">
             <a class="page-link" href="#" aria-label="Previous" @click.prevent="prevPage()">
               <span aria-hidden="true">&laquo;</span>
@@ -43,6 +43,7 @@
   
   export default {
     name: 'Pagination',
+    //props: [fetchRepositories],
     data() {
       return {
         repositories: [],
@@ -96,6 +97,37 @@
   };
   </script>
   
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@200&family=Josefin+Sans:ital@1&family=Montserrat:wght@100;600&family=Overpass:wght@300&family=Poppins:wght@300&family=Roboto:wght@300&display=swap');
+
+  .nav-link{
+  font-family: 'Lato';
+  font-size: 20px;
+}
+
+th{
+  font-family: 'Lato';
+  color:azure;
+}
+
+td{
+  color:azure; 
+}
+
+tr:nth-child(even) {background-color: #221d1d;}
+
+.table>:not(caption) td{
+  padding: 1.5rem .5rem;
+}
+
+.pagination{
+  padding: 20px;
+}
+
+li{
+  width:100px;
+}
+</style>
   
   
   

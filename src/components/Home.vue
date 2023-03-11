@@ -57,10 +57,8 @@ export default {
           </div>
           <p>Github_Name: {{ profile.name }}</p>
           <p>Github_Username: {{ profile.login }}</p>
-          <router-link to="/https://github.com/oyindamolaWbCode">Profile Link</router-link>
           <p>Numbers_of_repos: {{ profile.public_repos }}</p>
-          <p>Site_Admin: {{ profile.site_admin }}</p>
-          <p>Profile_Type: {{ profile.type }}</p>
+          <router-link to="https://github.com/oyindamolaWbCode" class="proLink">Profile Link</router-link>
         </div>
         <div v-else>
           Loading...
@@ -117,5 +115,12 @@ p {
 .repo-table th {
   padding: 10px !important;
   font-family: 'Montserrat', sans-serif;
+}
+
+.proLink{
+  text-decoration: none;
+  color:ghostwhite;
+  font-family: 'Lato';
+  font-size: 18px;
 }
 </style>
