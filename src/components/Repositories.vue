@@ -1,5 +1,6 @@
 <template>
-    <div class="container">
+   <div class="container">
+  <div v-if="!selectedRepo">
       <table class="table">
         <thead>
           <tr>
@@ -14,6 +15,11 @@
             <td class="sizing">{{ repo.name }}</td>
             <td class="sizing">{{ repo.id}}</td>
             <td class="sizing">{{ repo.language }}</td>
+            <td>
+              <button class="btn btn-primary" @click="selectRepo(repo)">
+                View
+              </button>
+            </td>
             <!-- <td>{{ repo.stargazers_count }}</td> -->
           </tr>
         </tbody>
@@ -35,21 +41,36 @@
           </li>
         </ul>
       </nav>
+    </div> 
+    <div v-else>
+      <Result :repo="selectedRepo" @back-to-repos="selectedRepo = null" />
     </div>
+  </div>
   </template>
   
   <script>
   import axios from 'axios';
-  
+  import Result from "./Result.vue";
+
   export default {
     name: 'Pagination',
+    components: {
+      Result
+    },
     //props: [fetchRepositories],
+    props: {
+    itemsPerPage: {
+      type: Number,
+      default: 5
+    }
+  },
     data() {
       return {
         repositories: [],
         currentPage: 1,
         itemsPerPage: 5,
         totalPages: 1,
+        selectedRepo: null,
       };
     },
     mounted() {
@@ -64,8 +85,11 @@
           })
           .catch(error => {
             console.error(error);
-          });
+          });   
       },
+       selectRepo(repo) {
+      this.selectedRepo = repo;
+    },
       changePage(page) {
         this.currentPage = page;
       },
@@ -81,18 +105,21 @@
       },
     },
     computed: {
-      pages() {
-        const pages = [];
-        for (let i = 1; i <= this.totalPages; i++) {
-          pages.push(i);
-        }
-        return pages;
-      },
+      // pages() {
+      //   const pages = [];
+      //   for (let i = 1; i <= this.totalPages; i++) {
+      //     pages.push(i);
+      //   }
+      //   return pages;
+      // },
       paginatedRepositories() {
         const startIndex = (this.currentPage - 1) * this.itemsPerPage;
         const endIndex = startIndex + this.itemsPerPage;
         return this.repositories.slice(startIndex, endIndex);
       },
+      pages() {
+      return Array(this.totalPages).fill().map((_, index) => index + 1);
+    }
     },
   };
   </script>

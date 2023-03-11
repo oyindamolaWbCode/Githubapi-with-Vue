@@ -32,17 +32,12 @@ export default {
     <router-link class="nav-link active"  to ="/">Home</router-link>
   </li>
   <li class="nav-item">
-    <router-link class="nav-link" :to="{name: 'Result'}">Result</router-link>
-  </li>
-  <li class="nav-item">
     <router-link class="nav-link" :to="{name: 'Repositories'}">Repositories</router-link>
   </li>
   <li class="nav-item">
             <router-link class="nav-link" :to="{name: 'NotFound'}">NotFound</router-link>
             </li>
 </ul>
-     <!-- 
-     <router-link :to ="{name : 'Result'}">Result</router-link> -->
     </div>
     <router-view />
   </header>

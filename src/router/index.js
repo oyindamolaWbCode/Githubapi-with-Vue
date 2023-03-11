@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "../components/Home.vue";
 import Repositories from "../components/Repositories.vue"
 import NotFound from "../components/NotFound.vue";
-import Result from "../components/Result.vue";
+//import Result from "../components/Result.vue";
 //import Navbar from "../components/Navbar.vue";
 
 const routes = [
@@ -18,11 +18,11 @@ const routes = [
   },
     //catchall 404
     //path: '/:catchAll(.*)'
-  {
-    path: "/Result",
-    name: "Result",
-    component: Result
-  },
+  // {
+  //   path: "/Result",
+  //   name: "Result",
+  //   component: Result
+  // },
 
    {
     path:'/:pathMatch(.*)*',
