@@ -8,11 +8,6 @@ export default {
         return {
             profile: null,
             Image: Image,
-            //repos: [],
-            // repositories: [],
-            // currentPage: 1,
-            // itemsPerPage: 3,
-            // totalPages: 1,
         };
     },
     methods: {
@@ -58,7 +53,7 @@ export default {
           <p>Github_Name: {{ profile.name }}</p>
           <p>Github_Username: {{ profile.login }}</p>
           <p>Numbers_of_repos: {{ profile.public_repos }}</p>
-          <router-link to="https://github.com/oyindamolaWbCode" class="proLink">Profile Link</router-link>
+          <router-link to="https://github.com/oyindamolaWbCode" class="proLink">Profile Link (wildCard)</router-link>
         </div>
         <div v-else>
           Loading...

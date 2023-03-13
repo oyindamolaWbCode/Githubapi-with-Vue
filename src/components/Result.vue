@@ -58,7 +58,7 @@
     font-family: 'Lato';
   }
 
-  a{
+ li a{
     text-decoration: none;
     color:azure;
   }

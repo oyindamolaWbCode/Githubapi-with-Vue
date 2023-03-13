@@ -24,33 +24,30 @@ export default {
 </script>
 
 <template>
-
   <header>
     <div id="nav">
-<ul class="nav justify-content-end">
-  <li class="nav-item">
-    <router-link class="nav-link active"  to ="/">Home</router-link>
-  </li>
-  <li class="nav-item">
-    <router-link class="nav-link" :to="{name: 'Repositories'}">Repositories</router-link>
-  </li>
-  <li class="nav-item">
-            <router-link class="nav-link" :to="{name: 'NotFound'}">NotFound</router-link>
-            </li>
-</ul>
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <router-link class="nav-link active" to="/">Home</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" :to="{ name: 'Repositories' }">Repositories</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" :to="{ name: 'NotFound' }">NotFound</router-link>
+        </li>
+      </ul>
     </div>
     <router-view />
   </header>
   <main>
     <!-- <div class="repos">
-    <div v-for="(repo, i) in repos" :key="i">
-      {{repo.name}}
-      {{ repo.id }}
-    </div>
-   </div> -->
+      <div v-for="(repo, i) in repos" :key="i">
+        {{repo.name}}
+        {{ repo.id }}
+      </div>
+     </div> -->
   </main>
 </template>
 
-<style >
-
-</style>
+<style ></style>
